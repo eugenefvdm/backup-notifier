@@ -3,10 +3,10 @@
 # Example
 
 # Command to run before backup
-# sh /root/backup-report.sh Begin Superman $BACKUP_DEST
+# sh /root/notify-slack.sh Begin Superman $BACKUP_DEST
 
 # Command to run after backup
-# sh /root/backup-report.sh End Superman $BACKUP_DEST $BACKUP_STATUS
+# sh /root/notify-slack.sh End Superman $BACKUP_DEST $BACKUP_STATUS
 
 # Command line parameters
 verb=$1
@@ -14,7 +14,7 @@ server=$2
 destination=$3
 status=$4
 
-message="$1 $2 backup  $3 $4"
+message="$1 $2 backup $3 $4"
 echo $message
 
 # Read the Slack Hook URL from the .env file
