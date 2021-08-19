@@ -54,6 +54,10 @@ Your post-backup command should look something like this:
 sh /root/notify-slack.sh End Superman $BACKUP_STATUS $BACKUP_DEST
 ```
 
+### Screenshot
+
+![Alt text](screenshot.png?raw=true "Virtualmin UI / Pre- and Post-Backup Commands")
+
 ## License
 
 MIT
