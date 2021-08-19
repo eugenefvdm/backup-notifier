@@ -22,13 +22,25 @@ Copy .env.example to .env
 
 ### Populate Virtualmin post backup command
 
-Parameters used:
+#### Parameters Used
 
-Your Server Name, e.g. `Superman`
-`$BACKUP_DEST`
-`$BACKUP_STATUS`
+Your Server Name, e.g.:
+- `Superman`
 
-Your post backup command should look like this
+Virtualmin variables:
+- `$BACKUP_DEST`
+- `$BACKUP_STATUS`
 
-`sh /root/notify-slack.sh Superman $BACKUP_STATUS $BACKUP_DEST`
+### Example Use
 
+Your pre-backup command should look something like this:
+
+```bash
+sh /root/notify-slack.sh Begin Superman $BACKUP_DEST
+```
+
+Your post-backup command should look something like this:
+
+```bash
+sh /root/notify-slack.sh End Superman $BACKUP_STATUS $BACKUP_DEST
+```
