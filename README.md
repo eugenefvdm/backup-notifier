@@ -20,9 +20,13 @@ Copy .env.example to .env
 
 `SLACK_HOOK=your_slack_hook_here`
 
-### Populate Virtualmin post backup command
+### Populate Virtualmin pre- and post-backup commands
+
+Look at Example Use below if you just want to get going.
 
 #### Parameters Used
+
+A Verb, e.g. `Begin` and `End`
 
 Your Server Name, e.g.:
 - `Superman`
@@ -44,3 +48,12 @@ Your post-backup command should look something like this:
 ```bash
 sh /root/notify-slack.sh End Superman $BACKUP_STATUS $BACKUP_DEST
 ```
+
+## License
+
+Free software, for now MIT license, but do with it what you want because I really don't care.
+
+## Contact Me
+
+Eugene
++27 82 309-6710 (Call or WhatsApp)
