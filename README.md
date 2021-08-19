@@ -52,12 +52,18 @@ sh /root/notify-slack.sh Begin Batman $BACKUP_DEST
 
 Your post-backup command should look something like this:
 ```bash
-sh /root/notify-slack.sh End Batman $BACKUP_STATUS $BACKUP_DEST
+sh /root/notify-slack.sh End Batman $BACKUP_DEST $BACKUP_STATUS
 ```
 
-### Screenshot
+## Screenshots
 
-![Alt text](screenshot.png?raw=true "Virtualmin UI / Pre- and Post-Backup Commands")
+### Virtualmin UI
+
+![Alt text](virtualmin_ui_screenshot.png?raw=true "Virtualmin UI / Pre- and Post-Backup Commands")
+
+### Slack UI
+
+![Alt text](virtualmin_slack_notification_screenshot.png?raw=true "Slack Notifications")
 
 ## License
 
