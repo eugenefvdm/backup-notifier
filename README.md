@@ -2,12 +2,13 @@
 
 ## Description
 
-A Slack Hook notifier designed to work as pre- and post-backup command notifiers for Virtualmin Backups
+A Slack Hook notifier designed to work as pre- and post-backup command notifiers for Virtualmin backups
 
 ## Usage
 
+- Copy the file in this repo `notify-slack.sh` to `/root`
 - Create a Slack hook
-- Store the Slack hook URL in the `.env` file
+- Store the Slack hook URL in an `.env` file
 - Use the Virtualmin UI to populate the the pre- and post-backup commands
 
 ### Create a Slack App and get the hook URL
