@@ -34,7 +34,7 @@ Look at Example Use below if you just want to get going.
 A Verb, e.g. `Begin` and `End`
 
 Your Server Name, e.g.:
-- `Superman`
+- `Batman`
 
 Virtualmin variables:
 - `$BACKUP_DEST`
@@ -42,16 +42,18 @@ Virtualmin variables:
 
 ### Example Use
 
+In the examples below, the server name is Batman
+
 Your pre-backup command should look something like this:
 
 ```bash
-sh /root/notify-slack.sh Begin Superman $BACKUP_DEST
+sh /root/notify-slack.sh Begin Batman $BACKUP_DEST
 ```
 
 Your post-backup command should look something like this:
 
 ```bash
-sh /root/notify-slack.sh End Superman $BACKUP_STATUS $BACKUP_DEST
+sh /root/notify-slack.sh End Batman $BACKUP_STATUS $BACKUP_DEST
 ```
 
 ### Screenshot
