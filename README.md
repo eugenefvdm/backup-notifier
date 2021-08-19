@@ -42,16 +42,15 @@ Virtualmin variables:
 
 ### Example Use
 
-In the examples below, the server name is Batman
+In the examples below, the server name is `Batman`.
+
 
 Your pre-backup command should look something like this:
-
 ```bash
 sh /root/notify-slack.sh Begin Batman $BACKUP_DEST
 ```
 
 Your post-backup command should look something like this:
-
 ```bash
 sh /root/notify-slack.sh End Batman $BACKUP_STATUS $BACKUP_DEST
 ```
