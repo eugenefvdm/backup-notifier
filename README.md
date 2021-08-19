@@ -1,16 +1,20 @@
-# virtualmin-slack-backup-notification
+# Virtualmin Slack Backup Notification
 
 ## Description
 
-A Slack Hook notifier designed to work as a Post command hook for Virtualmin Backups
+A Slack Hook notifier designed to work as pre- and post-backup command notifiers for Virtualmin Backups
 
 ## Usage
 
-First create a Slack hook, store the Slack hook URL, and then populate the Virtualmin post backup command
+- Create a Slack hook
+- Store the Slack hook URL in the `.env` file
+- Use the Virtualmin UI to populate the the pre- and post-backup commands
 
-### Create a Slack App and get the Hook URL
+### Create a Slack App and get the hook URL
 
-Follow the Slack instructions here to create a new App. A slack App is the basic neccesity one needs before being able to use a hook.
+A slack App is the basic neccesity one needs before being able to use a hook.
+
+Follow the Slack instructions here to create a new App.
 
 https://slack.com/intl/en-za/help/articles/115005265063-Incoming-webhooks-for-Slack
 
@@ -51,9 +55,20 @@ sh /root/notify-slack.sh End Superman $BACKUP_STATUS $BACKUP_DEST
 
 ## License
 
-Free software, for now MIT license, but do with it what you want because I really don't care.
+MIT
 
-## Contact Me
+## TODO
 
-Eugene
+Are you an open source shell script developer? Please help us make this even more perfect.
+
+Here is our current wish list:
+
+- Instead of outputting `1` or `0` for backup success and fail, use a word such as SUCCESS or FAIL
+- Make Slack do something special when it fails, e.g. present the output in the colour red, or play a sound
+- Update the readme with a screenshot that shows the Virtualmin UI and where these commands are inputted
+
+## Contact the Author
+
+Eugene van der Merwe
+https://vander.host
 +27 82 309-6710 (Call or WhatsApp)
