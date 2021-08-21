@@ -20,9 +20,12 @@ It would be nice to check if the file is there and if SLACK_HOOK has a value.
 
 - Additional usage instructions for when you have many servers, and how to retrieve the file from Git
 
+yum install git
+apt-get install git
+
 ```bash
 git init
-git remote add origin https://github.com/eugenevdm/github-new-repo-template.git
+git remote add origin https://github.com/eugenevdm/virtualmin-slack-backup-notification.git
 git pull origin main
 ```
 
