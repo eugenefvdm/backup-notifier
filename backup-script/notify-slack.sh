@@ -1,28 +1,18 @@
 #!/bin/bash
 
-directory="$(dirname "$(realpath "$0")")"
-
-#directory=/home/eugene/code/virtualmin-slack-backup-notification
-
 # Example Use
-# verb server destination status
+# sh notify-slack.sh verb server destination status
+# Verb must be Begin or End
 
-# Command to run before backup
+# Example command to run before backup
 # sh /root/notify-slack.sh Start Superman $BACKUP_DEST
 
-# Command to run after backup
+# Example Command to run after backup
 # sh /root/notify-slack.sh End Superman $BACKUP_DEST $BACKUP_STATUS
 
-# Variables
-# directory=/root
-
-# Source the environment: SLACK_HOOK, APP_ENV, APP_DIRECTORY
+directory="$(dirname "$(realpath "$0")")"
+# Source the environment which contains the slack hook and if the script is in debug mode or not
 . $directory/.env
-
-#if [$APP_ENV = 'local']
-#then
-    #directory=$APP_DIRECTORY
-#fi
 
 # Command line parameters
 verb=$1
@@ -46,5 +36,8 @@ then
     echo "The backup took $((($END - $START) / 60)) minutes and $((($END - $START) % 60)) seconds"
 fi
 
-# Post to Slack
-# curl -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
+if [ $APP_DEBUG = false ]
+then
+    # Post to Slack
+    curl -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
+fi
