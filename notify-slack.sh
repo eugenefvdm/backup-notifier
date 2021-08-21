@@ -11,7 +11,8 @@
 # sh /root/notify-slack.sh End Superman $BACKUP_DEST $BACKUP_STATUS
 
 # Variables
-directory=/home/eugene/code/virtualmin-slack-backup-notification
+#directory=/home/eugene/code/virtualmin-slack-backup-notification
+directory=/root
 
 # Command line parameters
 verb=$1
