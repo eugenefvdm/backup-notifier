@@ -18,7 +18,7 @@ message="$1 $2 backup to $3 $4"
 echo $message
 
 # Read the Slack Hook URL from the .env file
-source /root/.env
+. /root/.env
 
 # Post to Slack
 curl -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
