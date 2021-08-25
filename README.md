@@ -6,8 +6,8 @@ A Slack Hook notifier designed to work as pre- and post-backup command notifiers
 
 ## Usage
 
-- Copy the file in this repo `notify-slack.sh` to `/root`
-- Create a Slack hook
+- Copy the file in this repo `notify-slack.sh` to any directory, say `/root/backup-notifier`
+- Create a new Slack hook
 - Store the Slack hook URL in an `.env` file
 -- Warning - if you skip this step and you also use the pre-backup command, your backup job will fail
 - Use the Virtualmin UI to populate the the pre- and post-backup commands
@@ -25,6 +25,12 @@ https://slack.com/intl/en-za/help/articles/115005265063-Incoming-webhooks-for-Sl
 Copy .env.example to .env
 
 `SLACK_HOOK=your_slack_hook_here`
+
+The other value in the `.env` is:
+
+`APP_DEBUG=false`
+
+It's sole purpose is to stop Slack notifications from being sent.
 
 ### Populate Virtualmin pre- and post-backup commands
 
@@ -48,12 +54,12 @@ In the examples below, the server name is `Batman`.
 
 Your pre-backup command should look something like this:
 ```bash
-sh /root/notify-slack.sh Begin Batman $BACKUP_DEST
+sh /root/backup-notifier/notify-slack.sh Begin Batman $BACKUP_DEST
 ```
 
 Your post-backup command should look something like this:
 ```bash
-sh /root/notify-slack.sh End Batman $BACKUP_DEST $BACKUP_STATUS
+sh /root/backup-notifier/notify-slack.sh End Batman $BACKUP_DEST $BACKUP_STATUS
 ```
 
 ## Screenshots
