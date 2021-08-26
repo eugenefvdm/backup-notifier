@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Example Use
-# sh notify-slack.sh verb server destination status
+# sh notify-slack.sh verb host destination
 # Verb must be Begin or End
 
 # Example command to run before backup
@@ -11,42 +11,42 @@
 # sh /root/notify-slack.sh End Superman $BACKUP_DEST $BACKUP_STATUS
 
 directory="$(dirname "$(realpath "$0")")"
-# Source the environment which contains the slack hook and if the script is in debug mode or not
+# Source the environment which contains the Slack Hook and determines via APP_ENV if the script should output to Slack
 . $directory/.env
 
 # Command line parameters
-verb=$1
-server=$2
-destination=$3
-status=$4
+host=$(hostname)
+destination=$1
 
-message="$1 $2 backup to $3 $4 BACKUP_STATUS: $BACKUP_STATUS"
+echo "Host set to $host"
+
+message="$host backup to $destination"
 echo $message
 
 [ -v ${BACKUP_STATUS} ] && echo "\${BACKUP_STATUS} not defined" || echo "\${BACKUP_STATUS} is defined"
 
-if [ $1 = Start ] ; then
+if [[ -z ${BACKUP_STATUS+x} ]] ; then
     echo "Start of backup detected, writing start marker"
     gawk 'BEGIN { print "START=" systime() }' > $directory/notify-slack-start-marker.start
-fi
-
-if [ $1 = End ] ; then
+else
     echo "End of backup detected, writing end marker"
     gawk 'BEGIN { print "END=" systime() }' > $directory/notify-slack-start-marker.end
     # Source the start and end markers
     . $directory/notify-slack-start-marker.start
     . $directory/notify-slack-start-marker.end    
     duration="$((($END - $START) / 60)) minutes and $((($END - $START) % 60)) seconds"
-    if [ $status = 1 ] ; then
-        message=":smile: $2 backup to $3 was a success and took $duration"
+    if [ $BACKUP_STATUS = 1 ] ; then
+        message=":smile: $host backup to $BACKUP_DEST was a success and took $duration"
     else
-        message=":face_with_symbols_on_mouth: $2 backup to $3 FAILED and took $duration"
+        message=":face_with_symbols_on_mouth: $host backup to $BACKUP_DEST FAILED and took $duration"
     fi
 fi
 
+echo "Result: $message"
+
 # Post to Slack when the app is not in debug mode
-if [ $APP_DEBUG = false ] ; then   
-    # -s Silent -X Custom request (POST)
-    echo "Message to be posted to Slack: $message"
+if [ $POST_TO_SLACK = true ] ; then   
+    # -s Silent -X Custom request (POST)    
+    echo "Posting backup report to Slack"
     curl -s -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
 fi
