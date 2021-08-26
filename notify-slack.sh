@@ -24,10 +24,12 @@ message="$1 $2 backup to $3 $4"
 echo $message
 
 if [ $1 = Start ] ; then
+    echo "Start of backup detected, writing start marker"
     gawk 'BEGIN { print "START=" systime() }' > $directory/notify-slack-start-marker.start
 fi
 
 if [ $1 = End ] ; then
+    echo "End of backup detected, writing start marker"
     gawk 'BEGIN { print "END=" systime() }' > $directory/notify-slack-start-marker.end
     # Source the start and end markers
     . $directory/notify-slack-start-marker.start
@@ -41,6 +43,7 @@ if [ $1 = End ] ; then
 fi
 
 # Post to Slack when the app is not in debug mode
-if [ $APP_DEBUG = false ] ; then    
-    curl -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
+if [ $APP_DEBUG = false ] ; then   
+    # -s Silent -X Custom request (POST)
+    curl -s -X POST -H 'Content-type: application/json' --data "{'text':'$message'}" $SLACK_HOOK
 fi
