@@ -25,12 +25,13 @@ https://slack.com/intl/en-za/help/articles/115005265063-Incoming-webhooks-for-Sl
 Copy .env.example to .env
 
 `SLACK_HOOK=your_slack_hook_here`
+`POST_TO_SLACK=true`
 
 The other value in the `.env` is:
 
 `APP_DEBUG=false`
 
-It's sole purpose is to stop Slack notifications from being sent.
+This can be used to print out various messages during the script's execution.
 
 ### Populate Virtualmin pre- and post-backup commands
 
@@ -38,28 +39,24 @@ Look at Example Use below if you just want to get going.
 
 #### Parameters Used
 
-A Verb, e.g. `Begin` and `End`
-
-Your Server Name, e.g.:
-- `Batman`
-
 Virtualmin variables:
 - `$BACKUP_DEST`
 - `$BACKUP_STATUS`
 
 ### Example Use
 
-In the examples below, the server name is `Batman`.
+The pre- and post-backup commands are exactly the same.
 
+The purpose of the pre-backup command is to set a start marker which is used by the post-backup command to calculate how long the backup took.
 
-Your pre-backup command should look something like this:
+Pre-backup command:
 ```bash
-sh /root/backup-notifier/notify-slack.sh Begin Batman $BACKUP_DEST
+/bin/bash /root/backup-notifier/notify-slack.sh
 ```
 
-Your post-backup command should look something like this:
+Post-backup command:
 ```bash
-sh /root/backup-notifier/notify-slack.sh End Batman $BACKUP_DEST $BACKUP_STATUS
+/bin/bash /root/backup-notifier/notify-slack.sh
 ```
 
 ## Screenshots

@@ -1,5 +1,9 @@
 ## Change Log
 
+26 Auguest 2021
+
+- All command line parameters have been removed greatly reducing the complexity of the script and adding it to many servers
+
 25 August 2021
 
 - Added to README to document APP_DEBUG in `.env`
