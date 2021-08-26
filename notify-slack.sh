@@ -23,6 +23,8 @@ status=$4
 message="$1 $2 backup to $3 $4 BACKUP_STATUS: $BACKUP_STATUS"
 echo $message
 
+[ -v ${BACKUP_STATUS} ] && echo "\${BACKUP_STATUS} not defined" || echo "\${BACKUP_STATUS} is defined"
+
 if [ $1 = Start ] ; then
     echo "Start of backup detected, writing start marker"
     gawk 'BEGIN { print "START=" systime() }' > $directory/notify-slack-start-marker.start
