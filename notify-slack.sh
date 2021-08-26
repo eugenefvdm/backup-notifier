@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # Example Use
-# sh notify-slack.sh destination
-# It will obtain the current directory, debug mode, the destination of the backup, the hostname and these Virtualmin variables:
-# BACKUP_STATUS, BACKUP_DEST
+# /bin/bash notify-slack.sh
 
 # Get the current directory
 directory="$(dirname "$(realpath "$0")")"
@@ -11,7 +9,9 @@ directory="$(dirname "$(realpath "$0")")"
 # Source the environment to read SLACK_HOOK and POST_TO_SLACK
 . $directory/.env
 
+# Check if APP_DEBUG was found in the .env file
 if [ ! -v ${APP_DEBUG} ] ; then
+    # Set debug true or false which allows easy output further in the script
     if [ $APP_DEBUG = true ] ; then
         echo "Debug: On"
         debug=true
@@ -20,16 +20,14 @@ if [ ! -v ${APP_DEBUG} ] ; then
     fi
 fi
 
-# Command line parameter
-destination=$1
-
 host=$(hostname)
 
 if [ $debug = true ] ; then
     echo "Debug: Host set to $host"
 fi
 
-message="$host backup to $destination"
+message="$host backup to $BACKUP_DEST"
+
 if [ $debug = true ] ; then
     echo "Debug: Message: $message"
 fi
@@ -53,7 +51,7 @@ else
     fi
 fi
 
-echo "Result: $message"
+echo "Message: $message"
 
 # Check if POST_TO_SLACK exists
 if [[ ! -z ${POST_TO_SLACK+z} ]] ; then    
