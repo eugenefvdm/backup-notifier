@@ -4,9 +4,14 @@ Are you an open source shell script developer? Please help us make this even mor
 
 Here is our current wish list:
 
-- The script should be renamed, something like 'backup_notifier'
-- notify-slack.sh should be something like run.sh
-- New .env variable, DISPLAY_START
+### 1 September 2021
+
+- Fix screenshots, both are outdated
+- When the `DEBUG=` variable in `.env` is omitted, the script shows warnings. These do not affect anything but it would be better to check if `DEBUG=` exist first, and then assign a local variable.
+
+### Older
+
+- New .env variable, POST_TO_SLACK_ON_START. This would be used to reduce noise in the system and should be off by default.
 - If the user omits the start script, it would be nice to still show completion without duration [REPEAT]
 - A system that only display on failure is more powerful, one that says start of backup just creates noise
 - If it's the backup job's end, and there is no start marker, avoid trying to calculate the time
@@ -20,13 +25,11 @@ apt-get install git
 
 ```bash
 git init
-git remote add origin https://github.com/eugenevdm/virtualmin-slack-backup-notification.git
+git remote add origin https://github.com/eugenevdm/backup-notifier.git
 git pull origin main
 ```
 
-- Make Slack do something special when it fails, e.g. present the output in the colour red, or play a sound
-
-## DONE
+### DONE
 
 ~~ Update the readme with a screenshot that shows the Virtualmin UI and where these commands are inputted~~
 ~~ Instead of outputting `1` or `0` for backup success and fail, use a word such as SUCCESS or FAIL ~~
@@ -44,4 +47,6 @@ curl: try 'curl --help' or 'curl --manual' for more information
 ```
 
 - It would be nice to check if the file is there and if SLACK_HOOK has a value.
-~~
+~~ The script should be renamed, something like 'backup_notifier' ~~
+~~ notify-slack.sh should be something like run.sh ~~
+~~ Make Slack do something special when it fails, e.g. present the output in the colour red, or play a sound ~~
