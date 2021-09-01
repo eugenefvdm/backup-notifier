@@ -73,3 +73,5 @@ Post-backup command:
 
 MIT
 
+This sofware is open-sourced software licensed under the MIT license.
+
